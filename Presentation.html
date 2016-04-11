@@ -1,0 +1,496 @@
+<html>
+  <head>
+    <!DOCTYPE html>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Decomposing the Domain
+## Dave Rael
+
+http://optimizedprogrammer.com
+
+http://developeronfire.com
+
+dave@raelyard.com
+
+---
+
+# Real World?
+
+---
+
+# Real World?
+
+### Yes, but not really
+
+---
+
+# Why Decompose?
+![Zombie Decomposing](zombie.png)
+
+---
+
+# Why?
+![Melvin Conway](mel_conway.jpg)
+
+---
+
+# Conway's Law
+"Organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations"
+
+`-` Melvin Conway (1967)
+
+---
+
+# Sample Domain
+![House](holiday-house.jpg)
+
+
+### Connect Home Buyers/Sellers with Realtors
+
+Business:
+1. Free service for home buyers and sellers looking for help with a transaction
+2. Monetize by having realtors pay for "leads"
+
+---
+
+# Business Concerns:
+1. Build a network of realtors
+1. Create an account for a realtor
+1. Set up payment information for an account
+1. Take a deposit for an account
+1. Gather information about home buyers
+1. Gather information about home sellers
+1. Determine and execute critera for matching a consumer with realtors
+1. Determine and execute critera for selecting matched accounts
+1. Select relevant realtors for a consumer
+1. Deliver leads to agents
+1. Charge Realtor Accounts for leads
+1. Support credits for leads reported unusable by realtors
+1. Manage billing status and "good standing" for realtors/accounts
+1. Sell leads only to accounts in good standing
+
+---
+
+# A Ubiquitous Language Starts to Emerge:
+1. Build a network of **REALTOR**s
+1. Create an account for a **REALTOR**
+1. Set up payment information for an **ACCOUNT**
+1. Take a **DEPOSIT** for an **ACCOUNT**
+1. Gather information about **HOME BUYER**s
+1. Gather information about **HOME SELLER**s
+1. Determine and execute critera for **MATCHING** a **CONSUMER** with **REALTOR**s
+1. Determine and execute critera for **SELECTING** **MATCH**ed **ACCOUNT**s
+1. Select relevant **REALTOR**s for a **CONSUMER**
+1. **DELIVER** **LEAD**s to **AGENTS**
+1. Charge **REALTOR** Accounts for **LEAD**s
+1. Support **CREDIT**s for **LEAD**s reported unusable by realtors
+1. Manage **BILLING STATUS** and "**GOOD STANDING**" for **REALTOR**s/**ACCOUNT**s
+1. Sell **LEAD**s only to **ACCOUNT**s in **GOOD STANDING**
+
+---
+
+# Questions For Analysis:
+1. Build a **NETWORK** of realtors
+1. **CREATE AN ACCOUNT FOR A REALTOR**
+1. Set up payment information for an **ACCOUNT**
+1. Take a **DEPOSIT FOR AN ACCOUNT**
+1. Gather **INFORMATION** about home buyers
+1. Gather **INFORMATION** about home sellers
+1. Determine and execute **CRITERIA FOR MATCHING** a **CONSUMER** with realtors
+1. Determine and execute **CRITERIA FOR SELECTING** matched **ACCOUNT**s
+1. Select relevant realtors for a consumer
+1. **DELIVER** leads to **AGENT**s
+1. Charge Realtor Accounts for leads
+1. Support credits for leads **REPORTED UNUSABLE** by realtors
+1. Manage billing status and "**GOOD STANDING**" for realtors/accounts
+1. Sell leads only to accounts in good standing
+
+---
+
+# Analysis Goals:
+
+- Conversations
+- Examples
+
+---
+
+# Business Concerns - Sort and Group:
+1. Build a network of realtors
+1. Create an account for a realtor
+1. Set up payment information for an account
+1. Take a deposit for an account
+1. Gather information about home buyers
+1. Gather information about home sellers
+1. Determine and execute critera for matching a consumer with realtors
+1. Determine and execute critera for selecting matched accounts
+1. Select relevant realtors for a consumer
+1. Deliver leads to agents
+1. Charge Realtor Accounts for leads
+1. Support credits for leads reported unusable by realtors
+1. Manage billing status and "good standing" for realtors/accounts
+1. Sell leads only to accounts in good standing
+
+---
+
+# Business Concerns - Sort and Group:
+1. Build a network of realtors
+1. Create an account for a realtor
+1. **Set up payment information for an account**
+1. **Take a deposit for an account**
+1. Gather information about home buyers
+1. Gather information about home sellers
+1. Determine and execute critera for matching a consumer with realtors
+1. Determine and execute critera for selecting matched accounts
+1. Select relevant realtors for a consumer
+1. Deliver leads to agents
+1. **Charge Realtor Accounts for leads**
+1. Support credits for leads reported unusable by realtors
+1. **Manage billing status and "good standing" for realtors/accounts**
+1. Sell leads only to accounts in good standing
+
+---
+
+# Business Concerns - Sort and Group:
+1. Build a network of realtors
+1. Create an account for a realtor
+1. Set up payment information for an account
+1. Take a deposit for an account
+1. **Gather information about home buyers**
+1. **Gather information about home sellers**
+1. Determine and execute critera for matching a consumer with realtors
+1. Determine and execute critera for selecting matched accounts
+1. Select relevant realtors for a consumer
+1. Deliver leads to agents
+1. Charge Realtor Accounts for leads
+1. Support credits for leads reported unusable by realtors
+1. Manage billing status and "good standing" for realtors/accounts
+1. Sell leads only to accounts in good standing
+
+---
+
+# Business Concerns - Sort and Group:
+1. Build a network of realtors
+1. Create an account for a realtor
+1. Set up payment information for an account
+1. Take a deposit for an account
+1. Gather information about home buyers
+1. Gather information about home sellers
+1. **Determine and execute critera for matching a consumer with realtors**
+1. **Determine and execute critera for selecting matched accounts**
+1. **Select relevant realtors for a consumer**
+1. Deliver leads to agents
+1. Charge Realtor Accounts for leads
+1. Support credits for leads reported unusable by realtors
+1. Manage billing status and "good standing" for realtors/accounts
+1. Sell leads only to accounts in good standing
+
+---
+
+# Slow Down!
+![Speed Bump](speed_bump.png)
+
+---
+
+# Decomposition - Defer Naming
+* Yellow
+* Green
+* Orange
+* Red
+
+---
+
+# Decomposition - Sort and Group
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. Determine and execute critera for matching a consumer with realtors
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+* Red
+  1. Deliver leads to agents
+* Dunno
+  1. Build a network of realtors
+  1. Create an account for a realtor
+  1. Support credits for leads reported unusable by realtors
+  1. Sell leads only to accounts in good standing
+
+---
+
+# Decomposition - Build a network of realtors, Create an account for a realtor
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. Determine and execute critera for matching a consumer with realtors
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+* Red
+  1. Deliver leads to agents
+* Dunno
+  1. Support credits for leads reported unusable by realtors
+  1. Sell leads only to accounts in good standing
+
+---
+
+# Who Owns the Account?
+
+Red? Green? Yellow? Orange?
+
+---
+
+# What Is An Account?
+
+---
+
+# What Is An Account?
+
+### Answer: Depends
+
+---
+
+# What Is An Account?
+
+### Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+
+---
+
+# What Is An Account?
+
+### Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+
+### An Account is a Billing Victim
+
+---
+
+# What Is An Account?
+
+### Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+
+---
+
+# What Is An Account?
+
+### Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+
+### Don't care
+
+---
+
+# What Is An Account?
+
+### Orange
+  1. Determine and execute critera for matching a consumer with realtors
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+
+---
+
+# What Is An Account?
+
+### Orange
+  1. Determine and execute critera for matching a consumer with realtors
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+
+### An Account is a set of preferences for choosing leads to receive
+
+---
+
+# What Is An Account?
+
+### Red
+  1. Deliver leads to agents
+
+---
+
+# What Is An Account?
+
+### Red
+  1. Deliver leads to agents
+
+### An account is a recipient of formatted information
+
+---
+
+# Who Owns the Account?
+
+### Answer: Nobody and Everybody!
+
+---
+
+# Who Owns the Account?
+
+### Answer: Nobody and Everybody!
+Solomon and the baby
+
+---
+
+# Decomposition - Build a network of realtors, Create an account for a realtor
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. Determine and execute critera for matching a consumer with realtors
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+* Red
+  1. Deliver leads to agents
+* Dunno
+  1. Support credits for leads reported unusable by realtors
+  1. Sell leads only to accounts in good standing
+
+---
+
+# Decomposition - Build a network of realtors, Create an account for a realtor
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. **Configure accounts for realtors with chosen neighborhoods**
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+* Red
+  1. **Configure delivery methods and destinations**
+  1. Deliver leads to agents
+
+---
+
+# Decomposition - Sell leads only to accounts in good standing
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. Configure accounts for realtors with chosen neighborhoods
+  1. Determine and execute critera for selecting matched accounts
+  1. Select relevant realtors for a consumer
+* Red
+  1. Configure delivery methods and destinations
+  1. Deliver leads to agents
+
+---
+
+# Decomposition - Sell leads only to accounts in good standing
+* Yellow
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. **Manage billing status and "good standing" for realtors/accounts**
+  1. Charge Realtor Accounts for leads
+* Green
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* Orange
+  1. Configure accounts for realtors with chosen neighborhoods
+  1. Determine and execute critera for selecting matched accounts
+  1. **Exclude accounts with billing holds from candidate lists**
+  1. Select relevant realtors for a consumer
+* Red
+  1. Configure delivery methods and destinations
+  1. Deliver leads to agents
+
+---
+
+# Naming - A Rose By Any Other Name ...
+* **Finance**
+  1. Set up payment information for an account
+  1. Take a deposit for an account
+  1. Manage billing status and "good standing" for realtors/accounts
+  1. Charge Realtor Accounts for leads
+* **Consumer Submission**
+  1. Gather information about home buyers
+  1. Gather information about home sellers
+* **Matching And Selection**
+  1. Configure accounts for realtors with chosen neighborhoods
+  1. Determine and execute critera for selecting matched accounts
+  1. Exclude accounts with billing holds from candidate lists
+  1. Select relevant realtors for a consumer
+* **Delivery**
+  1. Configure delivery methods and destinations
+  1. Deliver leads to agents
+
+---
+
+# Cross-Boundary Communication
+
+### Domain Events
+
+![Event](event.jpg)
+
+---
+
+# Decomposition - Guiding Principles
+1. Tackle complexity in the heart of software
+1. Ubiquitous Language - Get the Words Right (or at least, consistent)
+1. Focus on the Domain
+1. Communicate with domain experts
+1. The Threee Amigos
+1. Autonomous subdomains enable autonomous teams
+  - Autonomous testing
+  - Autonomous deployment
+  - Autonomous schedule
+1. If you need consistency across boundaries, you have your boundaries wrong
+1. Communication with domain events enables context decoupling and independent testing
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
